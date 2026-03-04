@@ -1,40 +1,31 @@
 # Guide d'utilisation - Nextro Template
 
+> Voir le [README](../README.md) pour la documentation complète (routes, assets, configuration).
+
 ## 1. Utiliser la gem dans un autre projet
 
 ### Option A : Depuis un chemin local (développement)
 
-Si la gem est sur votre machine (dans le projet MEGA ou ailleurs) :
-
 ```ruby
 # Gemfile
 gem "nextro_template", path: "../ruby-on-rails-mega/gems/nextro_template"
-
-# Ou chemin absolu :
-gem "nextro_template", path: "/chemin/vers/nextro_template"
 ```
 
-### Option B : Depuis un dépôt Git (recommandé pour partage)
+### Option B : Depuis un dépôt Git (recommandé)
 
 ```ruby
 # Gemfile
 gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git"
-
-# Spécifier une branche :
-gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", branch: "main"
-
-# Spécifier un tag (version stable) :
-gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", tag: "v1.0.0"
-
-# Depuis GitLab, Bitbucket, etc. :
-gem "nextro_template", git: "https://gitlab.com/VOTRE_ORG/nextro_template.git"
+# gem "nextro_template", git: "...", branch: "main"
+# gem "nextro_template", git: "...", tag: "v1.0.0"
 ```
-
-Puis :
 
 ```bash
 bundle install
+rails generate nextro_template:install
 ```
+
+La commande `install` copie les assets, crée les contrôleurs et configure les routes.
 
 ---
 

@@ -1,39 +1,91 @@
 # Nextro Template
 
-Gem complète fournissant le template admin **Nextro** (Bootstrap 4) pour applications Rails : layout, concerns CRUD, helpers, générateurs et assets.
+Gem fournissant le template admin **Nextro** (Bootstrap 4) pour applications Rails : layout, concerns CRUD, helpers, générateurs et assets.
+
+**Source :** [github.com/itw-liege/nextro-template](https://github.com/itw-liege/nextro-template)
+
+---
 
 ## Installation
 
-Ajoutez dans votre `Gemfile` :
+### 1. Ajouter la gem au Gemfile
 
 ```ruby
-gem "nextro_template", path: "gems/nextro_template"
-# ou depuis RubyGems :
-# gem "nextro_template"
+# Depuis GitHub
+gem "nextro_template", github: "itw-liege/nextro-template"
+
+# Ou depuis un dépôt Git (branche/tag)
+# gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git"
+# gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", branch: "main"
+# gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", tag: "v1.0.0"
+
+# Ou en local pour le développement
+# gem "nextro_template", path: "gems/nextro_template"
 ```
 
-Puis :
+### 2. Dépendances requises
+
+```ruby
+gem "devise"
+gem "breadcrumbs_on_rails"
+gem "bootstrap", "~> 4.0"
+gem "bootstrap_form", "~> 4.0"
+```
+
+### 3. Installer
 
 ```bash
 bundle install
+rails generate nextro_template:install
 ```
 
-### Prérequis
+La commande `rails generate nextro_template:install` :
 
-- Rails 6+
-- Bootstrap 4
-- Devise (pour l'authentification et le menu utilisateur)
-- breadcrumbs_on_rails
-- bootstrap_form
+- copie les assets (stylesheets, javascripts) dans votre projet
+- crée le contrôleur admin et le dashboard
+- ajoute les routes
+- crée un initializer pour la précompilation des assets
+- crée le partial du menu (sidebar) à personnaliser
 
-## Utilisation
+---
 
-### 1. Controller Admin de base
+## Configuration manuelle (si vous n'utilisez pas le générateur)
 
-Créez un `Admin::AdminController` incluant les concerns Nextro :
+### Gemfile
 
 ```ruby
-# app/controllers/admin/admin_controller.rb
+gem "nextro_template", github: "itw-liege/nextro-template"
+gem "devise"
+gem "breadcrumbs_on_rails"
+gem "bootstrap", "~> 4.0"
+gem "bootstrap_form", "~> 4.0"
+```
+
+### Routes – `config/routes.rb`
+
+```ruby
+namespace :admin do
+  root to: "dashboard#index"
+  resources :admin, only: [], controller: "admin" do
+    get :set_language, on: :collection
+  end
+  # Vos ressources (users, categories, etc.)
+end
+```
+
+### Assets – `config/initializers/assets.rb` ou `config/initializers/nextro_template_assets.rb`
+
+```ruby
+Rails.application.config.assets.precompile += %w[nextro_template.css nextro.js nextro-datatables.js]
+```
+
+### Layout – `app/views/layouts/admin.html.erb`
+
+Le layout `admin` est fourni par la gem. Assurez-vous que votre `Admin::AdminController` utilise `layout "admin"`.
+
+### Controller Admin – `app/controllers/admin/admin_controller.rb`
+
+```ruby
 require "nextro_template"
 
 class Admin::AdminController < ApplicationController
@@ -49,36 +101,67 @@ class Admin::AdminController < ApplicationController
   helper "admin/table"
   helper "admin/menu"
   helper "application/bootstrap"
+
+  def set_language
+    current_user.update(language: params[:language]) if params[:language].present?
+    I18n.locale = params[:language] || I18n.default_locale
+    redirect_back(fallback_location: root_path)
+  end
 end
 ```
 
-### 2. Layout et assets
+### Application CSS – inclure les styles Nextro
 
-Le layout `admin` et les partials (`_sidebar_left`, `_breadcrumb`, `_account_item`) sont fournis par la gem.
+Dans `app/assets/stylesheets/application.scss` (ou équivalent) :
 
-Dans votre `config/initializers/assets.rb` :
-
-```ruby
-Rails.application.config.assets.precompile += %w[nextro_template.css nextro.js nextro-datatables.js]
+```scss
+@import "nextro_template";
 ```
 
-Dans le layout principal ou votre `application.html.erb`, incluez les assets fournis par la gem.
+Ou dans le layout admin, la gem charge automatiquement `nextro_template.css` si vous utilisez `stylesheet_link_tag "nextro_template"`.
 
-### 3. Générateur CRUD
+---
 
-Générez un CRUD admin complet :
+## Menu (sidebar)
+
+Le partial `admin/admin/_sidebar_left.html.erb` peut être personnalisé. Exemple :
+
+```erb
+<div class="navbar-content ps">
+  <ul class="pc-navbar">
+    <%= menu_title("Menu", "Sous-titre") %>
+    <%= menu_link("Dashboard", [:admin, :root], "dashboard", "fa-home") %>
+    <%= menu_link("Utilisateurs", [:admin, :users], "users", "fa-user-friends") %>
+    <%# Menu déroulant : %>
+    <%#= drop_menu "Configuration", "fa-cog", [
+    <%#   menu_link("Catégories", [:admin, :categories], "categories", "fa-th-large"),
+    <%#   menu_link("Sections", [:admin, :sections], "sections", "fa-th"),
+    <%# ], ["category", "section"] %>
+  </ul>
+</div>
+```
+
+---
+
+## Générateur CRUD
+
+Générer un CRUD complet :
 
 ```bash
-rails generate nextro_template:admin:crud product name:string description:text price:decimal
+rails generate nextro_template:admin:crud category name:string description:text
 ```
 
-### 4. Personnaliser le menu
+Puis ajouter l’entrée dans le menu `_sidebar_left.html.erb` :
 
-Surchargez le partial `admin/admin/_sidebar_left.html.erb` dans votre app pour personnaliser le menu.
+```erb
+<%= menu_link(t('admin.categories.sidebar_left_title'), [:admin, :categories], "categories", "fa-th-large") %>
+```
 
-### 5. Modèles avec breadcrumb
+---
 
-Pour les breadcrumbs dynamiques, incluez `BreadcrumbdableConcern` dans vos modèles :
+## Modèles avec breadcrumb
+
+Pour les breadcrumbs dynamiques, inclure `BreadcrumbdableConcern` :
 
 ```ruby
 class Category < ApplicationRecord
@@ -86,21 +169,57 @@ class Category < ApplicationRecord
 end
 ```
 
-## Structure fournie
+---
 
-- **Layout** : `admin.html.erb` (sidebar, header, breadcrumb)
-- **Concerns** : `CrudableConcern`, `PageTitleConcern`, `CurrentControllerConcern`
-- **Helpers** : `Admin::BootstraptHelper`, `Admin::TableHelper`, `Admin::MenuHelper`, `Application::BootstrapHelper`
-- **Assets** : SCSS de base, JS DataTables
-- **Locales** : fr, en
+## Publier la gem sur Git
 
-## Design complet Nextro
+### Créer le dépôt et pousser
 
-Pour le design complet du template Nextro (Phoenixcoded), ajoutez les assets Nextro dans votre application. La gem fournit une structure de base compatible.
+```bash
+cd gems/nextro_template
+git init
+git add .
+git commit -m "Initial commit - Nextro Template v1.0.0"
+git remote add origin https://github.com/VOTRE_ORG/nextro_template.git
+git branch -M main
+git push -u origin main
+```
 
-## Documentation
+### Créer un tag (version stable)
 
-- [Guide d'utilisation et publication Git](doc/UTILISATION.md) – Utilisation dans un autre projet et mise en ligne sur Git
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+### Utiliser la gem depuis Git
+
+```ruby
+# Gemfile
+gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git"
+gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", tag: "v1.0.0"
+```
+
+---
+
+## Structure fournie par la gem
+
+| Élément | Description |
+|--------|-------------|
+| `layouts/admin` | Layout principal admin |
+| `admin/admin/_sidebar_left` | Menu latéral (à personnaliser) |
+| `admin/admin/_breadcrumb` | Fil d'Ariane |
+| `admin/admin/_account_item` | Menu utilisateur (Devise) |
+| Helpers | BootstraptHelper, TableHelper, MenuHelper |
+| Concerns | CrudableConcern, PageTitleConcern, CurrentControllerConcern |
+| Locales | fr, en (`nextro.*`) |
+| Assets | SCSS layout, JS DataTables |
+
+---
+
+## Documentation complémentaire
+
+- [Guide Git et publication](doc/UTILISATION.md) – Mise en ligne sur Git, tags, mise à jour
 
 ## Licence
 

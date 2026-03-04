@@ -1,0 +1,11 @@
+<div class="navbar-content ps">
+  <ul class="pc-navbar">
+    <%= menu_title(t('admin.sidebar.title', default: 'Menu'), t('admin.sidebar.subtitle', default: '')) %>
+    <%= menu_link(t('admin.sidebar.dashboard', default: 'Dashboard'), [:admin, :root], "dashboard", "fa-home") %>
+
+    <%= menu_title(t('admin.sidebar.configuration', default: 'Configuration'), t('admin.sidebar.configuration_subtitle', default: '')) %>
+    <%= menu_link(t('admin.users.sidebar_left_title', default: 'Utilisateurs'), [:admin, :users], "users", "fa-user-friends") %>
+
+    <%# Ajoutez vos entrées de menu ici %>
+  </ul>
+</div>
