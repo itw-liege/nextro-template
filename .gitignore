@@ -1,0 +1,9 @@
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+log/
+tmp/
+.bundle/
+vendor/bundle

@@ -1,0 +1,32 @@
+<%%= b_card(t("admin.<%= @collection %>.title.index")) do %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <% @keys.each do |key| %>
+          <th><%%= t("activerecord.attributes.<%= @model_name.underscore %>.<%= key %>") %></th>
+          <% end %>
+          <th class="text-right"><%%= t("nextro.table.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%% collection.each do |<%= @singular %>| %>
+          <tr>
+            <% @fields.each do |field| %>
+            <% if [:time, :date, :datetime].include?(field[:type]) %>
+            <td><%%= l(<%= @singular %>.<%= field[:key] %>, format: :<%= field[:type] %>) %></td>
+            <% else %>
+            <td><%%= <%= @singular %>.<%= field[:key] %> %></td>
+            <% end %>
+            <% end %>
+            <td class="text-right">
+              <%%= table_show_button(resource_url(<%= @singular %>)) %>
+              <%%= table_edit_button(edit_resource_url(<%= @singular %>)) %>
+              <%%= table_delete_button(resource_url(<%= @singular %>)) %>
+            </td>
+          </tr>
+        <%% end %>
+      </tbody>
+    </table>
+  </div>
+<%% end %>

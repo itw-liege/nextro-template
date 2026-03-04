@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-language" content="<%= I18n.locale %>"/>
+    <title><%= content_for?(:title) ? yield(:title) : "Admin" %> | <%= content_for?(:app_name) ? yield(:app_name) : "App" %></title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
+    <%= stylesheet_link_tag "nextro_template", media: "all" %>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "nextro" %>
+    <%= javascript_importmap_tags if defined?(importmap_rails) %>
+    <%= yield :head %>
+    <script type="text/javascript">
+      I18n = I18n || {};
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
+  </head>
+  <body>
+    <div class="pc-mob-header pc-header">
+      <div class="pcm-logo">
+        <% begin %><%= image_tag("nextro_template/logo_1x.png", class: "logo logo-lg", alt: "Logo") %><% rescue %><%= content_tag(:span, "Logo", class: "logo logo-lg") %><% end %>
+      </div>
+      <div class="pcm-toolbar">
+        <a href="#!" class="pc-head-link" id="mobile-collapse" data-toggle="collapse">
+          <div class="hamburger hamburger--arrowturn">
+            <div class="hamburger-box">
+              <div class="hamburger-inner"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <nav class="pc-sidebar">
+      <div class="navbar-wrapper">
+        <div class="m-header">
+          <%= link_to (defined?(root_path) ? root_path : "/"), class: "b-brand" do %>
+            <% begin %><%= image_tag("nextro_template/logo_2x.png", class: "logo logo-lg", alt: "Logo") %><% rescue %><%= content_tag(:span, "Logo", class: "logo logo-lg") %><% end %>
+          <% end %>
+        </div>
+        <%= render partial: "admin/admin/sidebar_left" %>
+      </div>
+    </nav>
+
+    <header class="pc-header">
+      <div class="header-wrapper">
+        <div class="mr-auto pc-mob-drp">
+          <ul class="list-unstyled"></ul>
+        </div>
+        <div class="ml-auto d-flex justify-content-end flex-row align-center">
+          <% if I18n.available_locales.size > 1 %>
+            <div class="flag-list">
+              <% I18n.available_locales.each do |locale| %>
+                <%= link_to (defined?(set_language_admin_admin_index_path) ? set_language_admin_admin_index_path(language: locale) : "#"), class: "flag #{'flag-selected' if I18n.locale == locale}" do %>
+                  <%= locale.to_s.upcase %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <ul class="list-unstyled">
+            <%= render partial: "admin/admin/account_item" %>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="pc-container">
+      <div class="pcoded-content">
+        <%= render partial: "admin/admin/breadcrumb" %>
+        <div class="row mb-4">
+          <div class="col-sm-12">
+            <%= yield :buttons %>
+          </div>
+        </div>
+        <%= flash_message(flash) if respond_to?(:flash_message) %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+Description:
+    Installe Nextro Template (routes admin)
+
+Example:
+    rails generate nextro_template:install

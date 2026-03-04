@@ -1,0 +1,25 @@
+<%%= b_card_for_resource(resource) do %>
+  <%%= bootstrap_form_with model: [:admin, resource] do |f| %>
+    <% @fields.each do |field| %>
+    <% case field[:type]
+       when :string %>
+    <%%= f.text_field :<%= field[:key] %> %>
+    <% when :email %>
+    <%%= f.email_field :<%= field[:key] %> %>
+    <% when :text %>
+    <%%= f.text_area :<%= field[:key] %> %>
+    <% when :date %>
+    <%%= f.date_field :<%= field[:key] %> %>
+    <% when :datetime %>
+    <%%= f.datetime_field :<%= field[:key] %> %>
+    <% when :check %>
+    <%%= f.check_box :<%= field[:key] %> %>
+    <% when :number %>
+    <%%= f.number_field :<%= field[:key] %> %>
+    <% else %>
+    <%%= f.text_field :<%= field[:key] %> %>
+    <% end %>
+    <% end %>
+    <%%= f.submit t("nextro.forms.save"), class: "btn btn-success" %>
+  <%% end %>
+<%% end %>

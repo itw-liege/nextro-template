@@ -1,0 +1,35 @@
+en:
+  admin:
+    sidebar:
+      title: Menu
+      subtitle: ''
+      dashboard: Dashboard
+      configuration: Configuration
+      configuration_subtitle: ''
+    users:
+      sidebar_left_title: Users
+  nextro:
+    forms:
+      save: Save
+      back: Back
+      list:
+        add: Add
+        remove: Remove
+      select:
+        empty: None
+    flash:
+      error: Error
+      warning: Warning
+      alert: Alert
+      notice: Notice
+    table:
+      actions: Actions
+    account_item:
+      administrator: Administrator
+      my_account: My account
+      logout: Log out
+      notice: Notice
+    breadcrumbs:
+      new: New
+      dashboard: Dashboard
+      my_account: My account
