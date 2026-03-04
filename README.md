@@ -169,38 +169,6 @@ class Category < ApplicationRecord
 end
 ```
 
----
-
-## Publier la gem sur Git
-
-### Créer le dépôt et pousser
-
-```bash
-cd gems/nextro_template
-git init
-git add .
-git commit -m "Initial commit - Nextro Template v1.0.0"
-git remote add origin https://github.com/VOTRE_ORG/nextro_template.git
-git branch -M main
-git push -u origin main
-```
-
-### Créer un tag (version stable)
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-### Utiliser la gem depuis Git
-
-```ruby
-# Gemfile
-gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git"
-gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", tag: "v1.0.0"
-```
-
----
 
 ## Structure fournie par la gem
 

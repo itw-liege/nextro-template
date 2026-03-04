@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Nextro admin template - Design complet pour back-office Rails"
   spec.description = "Gem complète incluant le template Nextro (Bootstrap), layout admin, concerns CRUD, helpers, générateurs et assets."
-  spec.homepage = "https://github.com/example/nextro_template"
+  spec.homepage = "https://github.com/itw-liege/nextro-template"
   spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["homepage_uri"] = spec.homepage

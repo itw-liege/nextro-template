@@ -29,7 +29,7 @@ module Admin
           tag.div(class: "card") do
             tag.div(class: "card-header") do
               tag.h5(title)
-            end +
+            end
             tag.div(class: "card-body") { content }
           end
         end
