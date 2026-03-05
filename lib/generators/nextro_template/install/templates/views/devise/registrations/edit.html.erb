@@ -1,0 +1,15 @@
+<%= b_card(t('nextro.pages.my_account.title', default: t('devise.registrations.edit.title', default: 'Mon compte'))) do %>
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.email_field :email, autofocus: true %>
+    <% if resource.respond_to?(:firstname) %>
+      <%= f.text_field :firstname %>
+    <% end %>
+    <% if resource.respond_to?(:lastname) %>
+      <%= f.text_field :lastname %>
+    <% end %>
+    <%= f.password_field :password, help: t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it', default: 'Laisser vide pour ne pas modifier') %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :current_password, help: t('devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes', default: 'Mot de passe actuel requis pour confirmer') %>
+    <%= f.submit t('devise.registrations.edit.update', default: t('nextro.forms.save', default: 'Sauvegarder')), class: 'btn btn-success' %>
+  <% end %>
+<% end %>

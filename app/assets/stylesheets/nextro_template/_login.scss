@@ -1,12 +1,13 @@
-// Page login / Devise - auth-wrapper
+// Page login / Devise - style MEGA (fond sombre, carte sombre, texte blanc)
+// Surcharge nextro/style qui utilise var(--primary-color) pour le fond
 .auth-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: var(--login-bg, #0f0e18);
-  color: #fff;
+  background: var(--login-bg, #0f0e18) !important;
+  color: #fff !important;
 
   .auth-content {
     position: relative;
@@ -16,47 +17,49 @@
   }
 
   .card {
-    background: var(--nav-top-color, #16161e);
+    background: var(--nav-top-color, #16161e) !important;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 8px;
   }
 
   .card-body {
-    background: var(--nav-top-color);
+    background: var(--nav-top-color, #16161e) !important;
     padding: 40px 35px;
-    color: #fff;
+    color: #fff !important;
   }
 
-  .auth-wrapper a,
-  .auth-wrapper p > a {
-    color: var(--sidebar-primary-color-light);
+  a,
+  p > a {
+    color: #fff !important;
     font-weight: 600;
-    &:hover { color: var(--primary-color); }
+    &:hover { color: var(--primary-color) !important; }
   }
 
   .btn-primary {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
     &:hover {
-      background: var(--primary-color-hover);
-      border-color: var(--primary-color-hover);
+      background: var(--primary-color-hover) !important;
+      border-color: var(--primary-color-hover) !important;
     }
   }
 
   .form-control {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    &::placeholder { color: rgba(255, 255, 255, 0.5); }
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    &::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
   }
 
-  .form-group label {
-    color: rgba(255, 255, 255, 0.8);
+  .form-group label,
+  label {
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
   .text-muted { color: rgba(255, 255, 255, 0.6) !important; }
 
-  .f-w-400 { font-weight: 400; color: #fff; }
+  .f-w-400 { font-weight: 400; color: #fff !important; }
 
-  .logo.logo-lg { max-width: 100%; }
+  .logo.logo-lg,
+  img.img-fluid { max-width: 100%; }
 }

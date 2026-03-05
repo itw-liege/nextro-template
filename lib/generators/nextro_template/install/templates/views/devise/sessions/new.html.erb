@@ -1,0 +1,13 @@
+<%= image_tag "nextro/logo-login.png", class: "img-fluid mb-4" %>
+<h4 class="mb-3 f-w-400 text-center"><%= t('devise.general.signin_title', default: t('devise.sessions.new.sign_in')) %></h4>
+
+<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= f.email_field :email, autofocus: true, label_as_placeholder: true %>
+  <%= f.password_field :password, autocomplete: "off", label_as_placeholder: true %>
+  <%= f.check_box :remember_me %>
+  <%= f.submit t('devise.sessions.new.sign_in', default: 'Log in'), class: 'btn btn-block btn-primary mb-4 mt-4' %>
+<% end %>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <p class="text-muted"><%= t('devise.general.links.forgot.question', default: t('devise.shared.links.forgot_your_password')) %> <%= link_to t('devise.general.links.forgot.link', default: t('devise.shared.links.forgot_your_password')), new_password_path(resource_name), class: 'f-w-400' %></p>
+<% end -%>

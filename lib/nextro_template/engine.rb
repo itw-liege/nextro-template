@@ -17,7 +17,10 @@ module NextroTemplate
 
     initializer "nextro_template.assets" do |app|
       if app.config.respond_to?(:assets)
-        app.config.assets.precompile += %w[nextro_template.js nextro_template.css nextro.js nextro-datatables.js]
+        app.config.assets.precompile += %w[
+          nextro_template.js nextro_template.css nextro.js nextro-datatables.js
+          nextro/logo_1x.png nextro/logo_2x.png
+        ]
       end
     end
 

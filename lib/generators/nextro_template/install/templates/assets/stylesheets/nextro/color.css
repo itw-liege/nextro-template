@@ -1,0 +1,46 @@
+:root {
+  
+  /*GENERAL*/
+  --general-color-white:        #fff;
+  --background-color:           #e6e6e6;
+  --background-login-color:     #1a2639;
+  --background-login-button-color:     #3e4a61;
+  --dark-color:                 #3a3a3c;
+  --color:                      #AAB2BD;
+  --color-selected:             #fff;
+
+  /*LOGIN*/
+  --login-bg: rgb(15, 14, 24);;
+
+  /*SIDEBAR*/  
+  --nav-top-color:              rgb(22, 22, 30);
+
+  /*BTN-INFO*/
+  --btn-info-bg:              #3ec9d6;
+  --btn-info-bg-hover:              #2ab7c4;
+  
+  --sidebar-color-bg:           rgb(15, 14, 24);
+  --sidebar-color-separator:    rgba(100, 100, 100, 0.3);
+  --sidebar-color-bg-selected:  #3e4a61;
+  --sidebar-primary-color:         #f97131;
+  --sidebar-primary-color-light:   #e29974;
+  --sidebar-primary-color-dropdown:  #d9dad7;
+  --sidebar-primary-color-dropdown-hover:  #d9dad7;
+
+  
+  /*PRIMARY*/  
+  --primary-color:               #f97131;
+  --primary-color-dark:          #4d432a;
+  --primary-color-menu:          #ceb369;
+  --primary-color-menu-light:    #c4b794;
+  --primary-color-hover:         #E2773D; 
+  --primary-color-dropdown:      #a59e89; /*Dropdown general*/
+  --primary-color-white:         #fff;
+
+  /*SUCCESS*/
+  --success-color:               #596643;
+  --success-color-hover:         #5b624d; 
+
+}
+
+  /* var(--secondary-color); */

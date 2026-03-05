@@ -214,6 +214,84 @@ gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", 
 
 ---
 
+## JavaScript et design
+
+La gem charge automatiquement :
+- **DataTables** (recherche, tri, pagination) pour les tableaux avec la classe `.nextro-datatable`
+- **Font Awesome** pour les icônes (boutons edit/delete, menu)
+- **Dashboard** avec une carte statistique Utilisateurs (couleur primaire)
+
+---
+
+## Personnalisation (couleurs, polices, boutons)
+
+### Fichier personnalisé : `app/assets/stylesheets/nextro_template/_custom.scss`
+
+Ce fichier est créé automatiquement lors de l'installation. Il est chargé en dernier et permet de surcharger les styles sans modifier les fichiers de la gem.
+
+### Couleurs
+
+Les couleurs sont définies dans `_variables.scss`. Pour les modifier, surchargez ou éditez `_variables.scss` :
+
+```scss
+// app/assets/stylesheets/nextro_template/_variables.scss
+:root {
+  --primary-color: #14566b;        // Couleur principale (boutons, liens actifs)
+  --primary-color-hover: #0d3d4d;
+  --login-bg: #0f0e18;
+  --sidebar-color-bg: #0f0e18;
+  --nav-top-color: #16161e;
+}
+```
+
+Ou dans `_custom.scss` :
+
+```scss
+:root {
+  --primary-color: #14566b;
+  --primary-color-hover: #0d3d4d;
+}
+```
+
+### Couleurs des boutons
+
+```scss
+// Dans _custom.scss
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  &:hover {
+    background-color: var(--primary-color-hover);
+    border-color: var(--primary-color-hover);
+  }
+}
+
+.btn-success { background-color: #28a745; border-color: #28a745; }
+.btn-danger { background-color: #dc3545; border-color: #dc3545; }
+```
+
+### Police
+
+1. Ajoutez la police dans `app/views/layouts/admin.html.erb` (dans `<head>`) :
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+```
+
+2. Surchargez dans `_custom.scss` :
+
+```scss
+body {
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+```
+
+### Ajouter des cartes au dashboard
+
+Éditez `app/views/admin/dashboard/index.html.erb` pour ajouter vos statistiques (ex. : Items, Catégories, Sections) en copiant le bloc de la carte Utilisateurs.
+
+---
+
 ## Structure fournie par la gem
 
 | Élément | Description |

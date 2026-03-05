@@ -1,0 +1,187 @@
+/**
+ * Nextro Template - Personnalisation
+ *
+ * Ce fichier est chargé en dernier. Modifiez-le pour adapter
+ * les couleurs, polices et styles à votre charte graphique.
+ */
+
+// =============================================================================
+// COULEURS (variables CSS)
+// =============================================================================
+// Modifiez les variables dans _variables.scss ou surchargez-les ici.
+// Toutes les couleurs du template sont maintenant modifiables :
+//
+// :root {
+//   --primary-color: #14566b;
+//   --primary-color-hover: #0d3d4d;
+//   --login-bg: #0f0e18;
+//   --header-bg: #fff;
+//   --header-text-color: #1c232f;
+//   --header-link-hover-bg: #e8e7fc;
+//   --header-border-color: #f1f1f1;
+//   --nav-top-color: #16161e;
+//   --sidebar-color-bg: #0f0e18;
+//   --sidebar-color-bg-selected: #3e4a61;
+//   --sidebar-primary-color: #f97131;
+//   --sidebar-primary-color-light: #e29974;
+//   --sidebar-link-color: #ced4dc;
+//   --sidebar-link-hover-color: #fff;
+//   --sidebar-icon-color: #b3aee4;
+//   --sidebar-caption-subtitle-color: #67758a;
+//   --page-header-bg: #fff;
+//   --page-header-border-color: #cdd4e8;
+//   --page-header-breadcrumb-color: #293240;
+//   --background-color: #f0f2f8;
+// }
+
+// =============================================================================
+// POLICE
+// =============================================================================
+// Pour changer la police, ajoutez d'abord le lien dans le layout (ex: Google Fonts)
+// puis surchargez :
+//
+// body {
+//   font-family: "VotrePolice", "Inter", sans-serif;
+// }
+
+// =============================================================================
+// BOUTONS
+// =============================================================================
+// Surcharger les couleurs des boutons Bootstrap :
+//
+// .btn-primary {
+//   background-color: var(--primary-color);
+//   border-color: var(--primary-color);
+//   &:hover {
+//     background-color: var(--primary-color-hover);
+//     border-color: var(--primary-color-hover);
+//   }
+// }
+//
+// .btn-success { background-color: #28a745; border-color: #28a745; }
+// .btn-danger { background-color: #dc3545; border-color: #dc3545; }
+
+// =============================================================================
+// SIDEBAR - surcharge des couleurs codées en dur dans nextro/style
+// =============================================================================
+.pc-sidebar {
+  background: var(--sidebar-color-bg) !important;
+
+  .m-header {
+    background-color: var(--nav-top-color) !important;
+  }
+
+  .navbar-content {
+    background-color: var(--sidebar-color-bg) !important;
+  }
+
+  .pc-caption span:not(.badge) {
+    color: var(--sidebar-caption-subtitle-color) !important;
+  }
+
+  .pc-micon i,
+  .pc-micon > svg {
+    color: var(--sidebar-icon-color) !important;
+  }
+
+  .pc-link {
+    color: var(--sidebar-link-color) !important;
+
+    &:active, &:focus, &:hover {
+      color: var(--sidebar-link-hover-color) !important;
+
+      .pc-micon i,
+      .pc-micon svg {
+        color: var(--sidebar-link-hover-color) !important;
+      }
+    }
+  }
+
+  .pc-item.active > .pc-link,
+  .pc-item:focus > .pc-link,
+  .pc-item:hover > .pc-link {
+    color: var(--sidebar-link-hover-color) !important;
+
+    .pc-micon i,
+    .pc-micon svg {
+      color: var(--sidebar-link-hover-color) !important;
+    }
+  }
+
+  .pc-submenu .pc-item:hover:before {
+    background: var(--sidebar-link-color) !important;
+  }
+}
+
+.minimenu .pc-sidebar .pc-submenu {
+  background: var(--sidebar-color-bg) !important;
+}
+
+.minimenu .pc-sidebar .pc-item:hover > .pc-link {
+  background: var(--nav-top-color) !important;
+}
+
+// =============================================================================
+// HEADER (barre du haut) - surcharge des couleurs codées en dur
+// =============================================================================
+.pc-header {
+  background: var(--header-bg) !important;
+  color: var(--header-text-color) !important;
+  box-shadow: 0 1px 0 0 var(--header-border-color) !important;
+
+  .pc-head-link {
+    color: var(--header-text-color) !important;
+
+    &:active, &:focus, &:hover {
+      background: var(--header-link-hover-bg) !important;
+    }
+
+    .user-desc {
+      color: var(--header-text-color) !important;
+      opacity: 0.7;
+    }
+  }
+}
+
+// =============================================================================
+// PAGE HEADER (bande titre + breadcrumbs) - surcharge des couleurs codées en dur
+// =============================================================================
+.page-header {
+  background: var(--page-header-bg) !important;
+
+  h5 {
+    border-right-color: var(--page-header-border-color) !important;
+  }
+
+  .breadcrumb a {
+    color: var(--page-header-breadcrumb-color) !important;
+  }
+}
+
+// =============================================================================
+// DRAPEAUX DE LANGUE
+// =============================================================================
+.flag-list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  img.flag {
+    width: 20px;
+    height: auto;
+    display: block;
+  }
+
+  a.flag-selected img.flag {
+    width: 24px;
+    opacity: 1;
+  }
+
+  a:not(.flag-selected) img.flag {
+    opacity: 0.7;
+  }
+}
+
+// =============================================================================
+// VOS STYLES
+// =============================================================================

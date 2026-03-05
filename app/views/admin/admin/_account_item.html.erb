@@ -12,16 +12,16 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right pc-h-dropdown">
       <% if defined?(edit_user_registration_path) %>
-        <a href="<%= url_for edit_user_registration_path %>" class="dropdown-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <%= link_to edit_user_registration_path, class: "dropdown-item d-flex align-items-center" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           <span><%= t('nextro.account_item.my_account') %></span>
-        </a>
+        <% end %>
       <% end %>
       <% if defined?(destroy_user_session_path) %>
-        <a href="<%= url_for destroy_user_session_path %>" class="dropdown-item" data-method="delete">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+        <%= button_to destroy_user_session_path, method: :delete, form_class: "w-100 mb-0", form: { style: "margin: 0" }, class: "dropdown-item border-0 bg-transparent w-100 text-left d-flex align-items-center" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power mr-2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
           <span><%= t('nextro.account_item.logout') %></span>
-        </a>
+        <% end %>
       <% end %>
     </div>
   </li>

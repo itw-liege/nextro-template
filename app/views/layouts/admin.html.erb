@@ -6,10 +6,12 @@
     <meta http-equiv="content-language" content="<%= I18n.locale %>"/>
     <title><%= content_for?(:title) ? yield(:title) : "Admin" %> | <%= content_for?(:app_name) ? yield(:app_name) : "App" %></title>
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
     <%= stylesheet_link_tag "nextro_template", media: "all" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "nextro" %>
+    <%= javascript_include_tag "nextro-datatables" %>
     <%= javascript_importmap_tags if defined?(importmap_rails) %>
     <%= yield :head %>
     <script type="text/javascript">
@@ -21,7 +23,7 @@
   <body>
     <div class="pc-mob-header pc-header">
       <div class="pcm-logo">
-        <% begin %><%= image_tag("nextro_template/logo_1x.png", class: "logo logo-lg", alt: "Logo") %><% rescue %><%= content_tag(:span, "Logo", class: "logo logo-lg") %><% end %>
+        <%= image_tag("nextro/logo_1x.png", class: "logo logo-lg", alt: "Logo") %>
       </div>
       <div class="pcm-toolbar">
         <a href="#!" class="pc-head-link" id="mobile-collapse" data-toggle="collapse">
@@ -38,7 +40,7 @@
       <div class="navbar-wrapper">
         <div class="m-header">
           <%= link_to (defined?(root_path) ? root_path : "/"), class: "b-brand" do %>
-            <% begin %><%= image_tag("nextro_template/logo_2x.png", class: "logo logo-lg", alt: "Logo") %><% rescue %><%= content_tag(:span, "Logo", class: "logo logo-lg") %><% end %>
+            <%= image_tag("nextro/logo_2x.png", class: "logo logo-lg", alt: "Logo") %>
           <% end %>
         </div>
         <%= render partial: "admin/admin/sidebar_left" %>
@@ -54,8 +56,8 @@
           <% if I18n.available_locales.size > 1 %>
             <div class="flag-list">
               <% I18n.available_locales.each do |locale| %>
-                <%= link_to (defined?(set_language_admin_admin_index_path) ? set_language_admin_admin_index_path(language: locale) : "#"), class: "flag #{'flag-selected' if I18n.locale == locale}" do %>
-                  <%= locale.to_s.upcase %>
+                <%= link_to (respond_to?(:set_language_admin_admins_path) ? set_language_admin_admins_path(language: locale) : "#"), class: "flag #{'flag-selected' if I18n.locale == locale}" do %>
+                  <%= image_tag "nextro/#{locale}.png", class: "flag", alt: locale.to_s.upcase %>
                 <% end %>
               <% end %>
             </div>
@@ -68,13 +70,15 @@
     </header>
 
     <div class="pc-container">
+      <%= render partial: "admin/admin/breadcrumb" %>
       <div class="pcoded-content">
-        <%= render partial: "admin/admin/breadcrumb" %>
-        <div class="row mb-4">
-          <div class="col-sm-12">
-            <%= yield :buttons %>
+        <% if content_for?(:buttons) %>
+          <div class="row mb-4">
+            <div class="col-sm-12">
+              <%= yield :buttons %>
+            </div>
           </div>
-        </div>
+        <% end %>
         <%= flash_message(flash) if respond_to?(:flash_message) %>
         <%= yield %>
       </div>

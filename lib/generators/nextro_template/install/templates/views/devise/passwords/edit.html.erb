@@ -1,0 +1,10 @@
+<h4 class="mb-3 f-w-400 text-center"><%= t('devise.passwords.edit.change_your_password', default: 'Changer votre mot de passe') %></h4>
+
+<%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.hidden_field :reset_password_token %>
+  <%= f.password_field :password, autofocus: true, autocomplete: "off", label_as_placeholder: true %>
+  <%= f.password_field :password_confirmation, autocomplete: "off", label_as_placeholder: true %>
+  <%= f.submit t('devise.passwords.edit.change_my_password', default: 'Modifier'), class: 'btn btn-block btn-primary mb-4 mt-4' %>
+<% end %>
+
+<%= render "devise/shared/links" %>

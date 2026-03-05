@@ -1,17 +1,38 @@
 // Variables Nextro Template - couleurs et thème
+// Toutes modifiables dans _custom.scss pour personnaliser le thème
 :root {
+  // Couleurs principales
   --primary-color: #f97131;
   --primary-color-hover: #e86420;
   --primary-color-dark: #4d432a;
   --primary-color-menu: #ceb369;
   --primary-color-menu-light: #c4b794;
 
+  // Login
   --login-bg: #0f0e18;
-  --nav-top-color: #16161e;
+
+  // Header (barre du haut)
+  --header-bg: #fff;
+  --header-text-color: #1c232f;
+  --header-link-hover-bg: #e8e7fc;
+  --header-border-color: #f1f1f1;
+
+  // Sidebar
+  --nav-top-color: #16161e;           // Zone logo sidebar
   --sidebar-color-bg: #0f0e18;
   --sidebar-color-bg-selected: #3e4a61;
   --sidebar-primary-color: #f97131;
   --sidebar-primary-color-light: #e29974;
+  --sidebar-link-color: #ced4dc;
+  --sidebar-link-hover-color: #fff;
+  --sidebar-icon-color: #b3aee4;
+  --sidebar-caption-subtitle-color: #67758a;
 
+  // Page header (bande blanche titre + breadcrumbs)
+  --page-header-bg: #fff;
+  --page-header-border-color: #cdd4e8;
+  --page-header-breadcrumb-color: #293240;
+
+  // Fond général
   --background-color: #f0f2f8;
 }

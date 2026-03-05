@@ -1,0 +1,10 @@
+<%= b_card(t('admin.users.title.edit', default: 'Modifier l\'utilisateur')) do %>
+  <%= bootstrap_form_with model: [:admin, @user], url: admin_user_path(@user), method: :patch do |f| %>
+    <%= f.email_field :email if @user.respond_to?(:email) %>
+    <%= f.text_field :firstname if @user.respond_to?(:firstname) %>
+    <%= f.text_field :lastname if @user.respond_to?(:lastname) %>
+    <%= f.password_field :password, help: "Laisser vide pour ne pas modifier" if @user.respond_to?(:password) %>
+    <%= f.password_field :password_confirmation if @user.respond_to?(:password_confirmation) %>
+    <%= f.submit t('nextro.forms.save', default: 'Sauvegarder'), class: 'btn btn-success' %>
+  <% end %>
+<% end %>

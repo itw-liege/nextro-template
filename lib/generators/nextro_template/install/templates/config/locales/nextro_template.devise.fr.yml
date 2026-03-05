@@ -1,0 +1,18 @@
+# Nextro Template - Devise translations (optional, fallback to devise.*)
+fr:
+  devise:
+    general:
+      signin_title: "Connexion"
+      signup_title: "Inscription"
+      forgot_password: "Mot de passe oublié ?"
+      forgot_password_p1: "Entrez votre adresse email et vous recevrez un email avec la procédure pour changer votre mot de passe."
+      links:
+        sessions:
+          question: "Vous avez déjà un compte ?"
+          link: "Connexion"
+        registration:
+          question: "Vous n'avez pas de compte ?"
+          link: "Inscription"
+        forgot:
+          question: "Mot de passe oublié ?"
+          link: "Réinitialiser"

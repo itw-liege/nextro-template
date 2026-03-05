@@ -1,8 +1,13 @@
 /**
- * Nextro Template - Styles de base
- * Compatible avec le template Nextro (Bootstrap 4)
+ * Nextro Template - Styles complets
+ * Inclut le template Nextro (Bootstrap 4, color, style, plugins)
  */
-@import "bootstrap";
+@import "nextro/color";
+@import "nextro/style";
+@import "nextro/customizer";
+@import "nextro/plugins/chosen.min.css";
+@import "nextro/plugins/dataTables.bootstrap4.min.css";
 @import "nextro_template/variables";
 @import "nextro_template/layout";
 @import "nextro_template/login";
+@import "nextro_template/custom";

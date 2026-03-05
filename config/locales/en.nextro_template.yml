@@ -31,5 +31,9 @@ en:
       notice: Notice
     breadcrumbs:
       new: New
+      edit: Edit
       dashboard: Dashboard
       my_account: My account
+    pages:
+      my_account:
+        title: My account

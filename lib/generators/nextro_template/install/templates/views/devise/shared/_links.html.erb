@@ -1,0 +1,19 @@
+<%- if controller_name != 'sessions' %>
+  <p class="text-muted"><%= t('devise.general.links.sessions.question', default: 'Already have an account?') %> <%= link_to t('devise.general.links.sessions.link', default: t('devise.shared.links.sign_in')), new_session_path(resource_name), class: 'f-w-400' %></p>
+<% end -%>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <p class="text-muted"><%= t('devise.general.links.registration.question', default: "Don't have an account?") %> <%= link_to t('devise.general.links.registration.link', default: t('devise.shared.links.sign_up')), new_registration_path(resource_name), class: 'f-w-400' %></p>
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <p class="text-muted"><%= t('devise.general.links.forgot.question', default: t('devise.shared.links.forgot_your_password')) %> <%= link_to t('devise.general.links.forgot.link', default: t('devise.shared.links.forgot_your_password')), new_password_path(resource_name), class: 'f-w-400' %></p>
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <p class="text-muted"><strong><%= link_to t('devise.shared.links.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %></strong></p>
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <p class="text-muted"><strong><%= link_to t('devise.shared.links.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %></strong></p>
+<% end -%>

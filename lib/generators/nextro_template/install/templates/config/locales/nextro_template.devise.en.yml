@@ -1,0 +1,18 @@
+# Nextro Template - Devise translations (optional, fallback to devise.*)
+en:
+  devise:
+    general:
+      signin_title: "Sign in"
+      signup_title: "Sign up"
+      forgot_password: "Forgot your password?"
+      forgot_password_p1: "Enter your email address and you will receive an email with instructions on how to reset your password."
+      links:
+        sessions:
+          question: "Already have an account?"
+          link: "Sign in"
+        registration:
+          question: "Don't have an account?"
+          link: "Sign up"
+        forgot:
+          question: "Forgot your password?"
+          link: "Reset password"

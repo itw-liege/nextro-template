@@ -27,8 +27,7 @@ module Application
 
       return nil unless message.present?
 
-      content_tag(:br) +
-        content_tag(:div, class: "row") do
+      content_tag(:div, class: "row") do
           content_tag(:div, class: "col-sm-12") do
             content_tag(:div, class: "alert #{klass} alert-dismissable") do
               button_tag("&times;".html_safe, type: "button", class: "close", "data-dismiss": "alert", "aria-hidden": "true") +

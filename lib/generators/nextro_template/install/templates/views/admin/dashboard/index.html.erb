@@ -1,6 +1,27 @@
-<div class="row">
-  <div class="col-12">
-    <h4><%= t('nextro.breadcrumbs.dashboard', default: 'Dashboard') %></h4>
-    <p>Bienvenue dans l'administration.</p>
+
+<h2 class="mb-4"><%= t('admin.dashboard.welcome', default: 'Bienvenue dans l\'administration') %></h2>
+
+<% if defined?(User) %>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="card text-white" style="background-color: var(--primary-color);">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-user-friends fa-2x mr-3 opacity-75 text-white"></i>
+              <div class="text-white">
+                <h4 class="mb-0 text-white"><%= User.count %></h4>
+                <small class="text-white"><%= t('admin.dashboard.stats.users', default: 'Utilisateurs') %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<% else %>
+<p class="text-muted"><%= t('admin.dashboard.no_stats', default: 'Configurez Devise et le modèle User pour afficher des statistiques.') %></p>
+<% end %>
+

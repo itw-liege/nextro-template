@@ -31,5 +31,9 @@ fr:
       notice: Info
     breadcrumbs:
       new: Nouveau
-      dashboard: Dashboard
+      edit: Modifier
+      dashboard: Tableau de bord
       my_account: Mon compte
+    pages:
+      my_account:
+        title: Mon compte
