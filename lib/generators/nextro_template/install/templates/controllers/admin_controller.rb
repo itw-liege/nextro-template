@@ -4,7 +4,7 @@ class Admin::AdminController < ApplicationController
   include Nextro::PageTitleConcern
   include Nextro::CurrentControllerConcern
 
-  before_action :authenticate_user! if respond_to?(:authenticate_user!, true)
+  before_action :authenticate_user!# if respond_to?(:authenticate_user!, true)
 
   add_breadcrumb I18n.t("nextro.breadcrumbs.dashboard"), [:admin, :root]
 
