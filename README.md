@@ -42,7 +42,11 @@ rails generate nextro_template:install
 
 La commande `rails generate nextro_template:install` :
 
-- copie les assets (stylesheets, javascripts) dans votre projet
+- copie les assets (stylesheets, javascripts, images) dans votre projet
+- copie les vues Devise (login, signup, mot de passe oublié, mon compte, réinitialisation) avec le style Nextro
+- crée le contrôleur `Auth::RegistrationsController` pour la page « Mon compte » dans le layout admin (si absent)
+- configure les routes Devise pour utiliser ce contrôleur
+- copie les locales Devise (fr, en)
 - crée le contrôleur admin et le dashboard
 - ajoute les routes
 - crée un initializer pour la précompilation des assets
@@ -124,13 +128,15 @@ Ou dans le layout admin, la gem charge automatiquement `nextro_template.css` si 
 
 ---
 
-## Page de connexion (Devise)
+## Page de connexion et Devise
 
-Le layout `devise` applique le design Nextro (fond sombre, carte centrée) aux pages Devise (login, mot de passe oublié, etc.). Le générateur configure automatiquement `ApplicationController` pour utiliser ce layout. Personnalisez les vues si besoin :
+Le layout `devise` applique le design Nextro (fond sombre, carte centrée) aux pages Devise. Le générateur :
 
-```bash
-rails g devise:views
-```
+- configure `ApplicationController` pour utiliser le layout `devise` sur les contrôleurs Devise
+- copie les vues : login, signup, mot de passe oublié, mon compte (`/users/edit`), réinitialisation du mot de passe
+- copie les locales `nextro_template.devise.en.yml` et `nextro_template.devise.fr.yml`
+
+La page **Mon compte** (`/users/edit`) utilise le layout admin grâce à `Auth::RegistrationsController`. Les vues sont dans `app/views/devise/` et peuvent être personnalisées directement.
 
 ---
 
@@ -290,6 +296,20 @@ body {
 
 Éditez `app/views/admin/dashboard/index.html.erb` pour ajouter vos statistiques (ex. : Items, Catégories, Sections) en copiant le bloc de la carte Utilisateurs.
 
+### Logo et images
+
+Les logos sont copiés dans `app/assets/images/nextro/` :
+
+- `logo_1x.png`, `logo_2x.png` : sidebar et header mobile
+- `logo-login.png` : page de connexion
+- `en.png`, `fr.png` : drapeaux pour le sélecteur de langue
+
+Pour personnaliser, remplacez ces fichiers par vos propres images (mêmes noms recommandés).
+
+### Zone des boutons (content_for :buttons)
+
+Le layout admin affiche une ligne de boutons au-dessus du contenu uniquement si `content_for :buttons` est défini. Les pages sans boutons (ex. dashboard) n’affichent pas d’espace vide.
+
 ---
 
 ## Structure fournie par la gem
@@ -297,13 +317,16 @@ body {
 | Élément | Description |
 |--------|-------------|
 | `layouts/admin` | Layout principal admin |
+| `layouts/devise` | Layout pour login, signup, mot de passe oublié |
 | `admin/admin/_sidebar_left` | Menu latéral (à personnaliser) |
 | `admin/admin/_breadcrumb` | Fil d'Ariane |
-| `admin/admin/_account_item` | Menu utilisateur (Devise) |
+| `admin/admin/_account_item` | Menu utilisateur (Mon compte, Déconnexion) |
+| Vues Devise | sessions/new, registrations/new, registrations/edit, passwords/new, passwords/edit |
+| `Auth::RegistrationsController` | Mon compte dans le layout admin |
 | Helpers | BootstraptHelper, TableHelper, MenuHelper |
 | Concerns | CrudableConcern, PageTitleConcern, CurrentControllerConcern |
-| Locales | fr, en (`nextro.*`) |
-| Assets | SCSS layout, JS DataTables |
+| Locales | fr, en (`nextro.*`, `nextro_template.devise.*`) |
+| Assets | SCSS layout, JS DataTables, logos (nextro/) |
 
 ---
 
