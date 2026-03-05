@@ -116,12 +116,8 @@ RUBY
       end
 
       def add_routes
-        # devise_for :users si pas déjà présent
-        routes_content = File.read("config/routes.rb")
-        unless routes_content.include?("devise_for :users")
-          inject_into_file "config/routes.rb", "  devise_for :users\n", after: "Rails.application.routes.draw do\n"
-        end
-
+        # Ne pas ajouter devise_for :users ici : le modèle User doit exister avant.
+        # L'utilisateur doit exécuter "rails g devise:install" puis "rails g devise User" AVANT ce générateur.
         route <<~ROUTES
           root to: 'admin/dashboard#index'
           
@@ -144,7 +140,7 @@ RUBY
         say "  1. Vérifiez config/initializers/assets.rb"
         say "  2. La route users et le contrôleur sont créés par défaut"
         say "  3. Personnalisez app/views/admin/admin/_sidebar_left.html.erb"
-        say "  4. Créez User avec Devise si pas déjà fait : rails g devise User"
+        say "  4. Si Devise n'était pas installé avant : rails g devise:install && rails g devise User && rails db:migrate"
         say "  5. Pour un CRUD : rails g nextro_template:admin:crud nom name:string"
         say "  6. Layout et vues Devise (login, signup, forgot password) copiés avec style Nextro"
         say ""

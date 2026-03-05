@@ -35,8 +35,13 @@ gem "jquery-rails"  # requis par nextro.js (Bootstrap, DataTables)
 
 ### 3. Installer
 
+**Ordre important :** Devise et le modèle User doivent exister avant d'installer Nextro Template.
+
 ```bash
 bundle install
+rails generate devise:install
+rails generate devise User
+rails db:migrate
 rails generate nextro_template:install
 ```
 
