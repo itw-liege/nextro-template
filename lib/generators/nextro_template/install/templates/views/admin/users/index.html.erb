@@ -1,0 +1,29 @@
+<%= b_card(t('admin.users.sidebar_left_title', default: 'Utilisateurs')) do %>
+  <% if @users.any? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Créé le</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.respond_to?(:email) ? user.email : user.to_s %></td>
+              <td><%= user.respond_to?(:created_at) ? l(user.created_at, format: :short) : '-' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-muted">
+      Configurez Devise et le modèle User pour gérer les utilisateurs :
+    </p>
+    <pre class="bg-light p-3"><code>rails g devise:install
+rails g devise User
+rails db:migrate</code></pre>
+  <% end %>
+<% end %>

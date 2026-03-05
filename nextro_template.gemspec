@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Nextro admin template - Design complet pour back-office Rails"
   spec.description = "Gem complète incluant le template Nextro (Bootstrap), layout admin, concerns CRUD, helpers, générateurs et assets."
-  spec.homepage = "https://github.com/itw-liege/nextro-template"
+  spec.homepage = "https://github.com/example/nextro_template"
   spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "breadcrumbs_on_rails"
   spec.add_dependency "bootstrap", "~> 4.0"
   spec.add_dependency "bootstrap_form", "~> 4.0"
+  spec.add_dependency "jquery-rails"
   spec.add_dependency "sassc-rails"
 
   spec.add_development_dependency "sqlite3"

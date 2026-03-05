@@ -30,6 +30,7 @@ gem "devise"
 gem "breadcrumbs_on_rails"
 gem "bootstrap", "~> 4.0"
 gem "bootstrap_form", "~> 4.0"
+gem "jquery-rails"  # requis par nextro.js (Bootstrap, DataTables)
 ```
 
 ### 3. Installer
@@ -59,6 +60,7 @@ gem "devise"
 gem "breadcrumbs_on_rails"
 gem "bootstrap", "~> 4.0"
 gem "bootstrap_form", "~> 4.0"
+gem "jquery-rails"
 ```
 
 ### Routes – `config/routes.rb`
@@ -122,6 +124,16 @@ Ou dans le layout admin, la gem charge automatiquement `nextro_template.css` si 
 
 ---
 
+## Page de connexion (Devise)
+
+Le layout `devise` applique le design Nextro (fond sombre, carte centrée) aux pages Devise (login, mot de passe oublié, etc.). Le générateur configure automatiquement `ApplicationController` pour utiliser ce layout. Personnalisez les vues si besoin :
+
+```bash
+rails g devise:views
+```
+
+---
+
 ## Menu (sidebar)
 
 Le partial `admin/admin/_sidebar_left.html.erb` peut être personnalisé. Exemple :
@@ -169,6 +181,38 @@ class Category < ApplicationRecord
 end
 ```
 
+---
+
+## Publier la gem sur Git
+
+### Créer le dépôt et pousser
+
+```bash
+cd gems/nextro_template
+git init
+git add .
+git commit -m "Initial commit - Nextro Template v1.0.0"
+git remote add origin https://github.com/VOTRE_ORG/nextro_template.git
+git branch -M main
+git push -u origin main
+```
+
+### Créer un tag (version stable)
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+### Utiliser la gem depuis Git
+
+```ruby
+# Gemfile
+gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git"
+gem "nextro_template", git: "https://github.com/VOTRE_ORG/nextro_template.git", tag: "v1.0.0"
+```
+
+---
 
 ## Structure fournie par la gem
 

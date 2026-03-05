@@ -1,0 +1,62 @@
+// Page login / Devise - auth-wrapper
+.auth-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--login-bg, #0f0e18);
+  color: #fff;
+
+  .auth-content {
+    position: relative;
+    padding: 15px;
+    z-index: 5;
+    width: 400px;
+  }
+
+  .card {
+    background: var(--nav-top-color, #16161e);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px;
+  }
+
+  .card-body {
+    background: var(--nav-top-color);
+    padding: 40px 35px;
+    color: #fff;
+  }
+
+  .auth-wrapper a,
+  .auth-wrapper p > a {
+    color: var(--sidebar-primary-color-light);
+    font-weight: 600;
+    &:hover { color: var(--primary-color); }
+  }
+
+  .btn-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    &:hover {
+      background: var(--primary-color-hover);
+      border-color: var(--primary-color-hover);
+    }
+  }
+
+  .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    &::placeholder { color: rgba(255, 255, 255, 0.5); }
+  }
+
+  .form-group label {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .text-muted { color: rgba(255, 255, 255, 0.6) !important; }
+
+  .f-w-400 { font-weight: 400; color: #fff; }
+
+  .logo.logo-lg { max-width: 100%; }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-language" content="<%= I18n.locale %>"/>
+    <title><%= content_for?(:title) ? yield(:title) : (t('devise.sessions.new.sign_in', default: 'Connexion') rescue 'Connexion') %></title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <%= stylesheet_link_tag "nextro_template", media: "all" %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript">
+      I18n = I18n || {};
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div class="auth-wrapper">
+      <div class="auth-content">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-body">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
